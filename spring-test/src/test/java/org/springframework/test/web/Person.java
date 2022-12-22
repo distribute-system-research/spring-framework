@@ -86,7 +86,7 @@ public class Person {
 	@Override
 	public String toString() {
 		return "Person [name=" + this.name + ", someDouble=" + this.someDouble
-				+ ", someBoolean=" + this.someBoolean + "]";
+				+ ", someBoolean=" + this.someBoolean + "]ppp";
 	}
 
 }
