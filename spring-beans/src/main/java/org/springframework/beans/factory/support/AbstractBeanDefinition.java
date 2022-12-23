@@ -16,14 +16,6 @@
 
 package org.springframework.beans.factory.support;
 
-import java.lang.reflect.Constructor;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Supplier;
-
 import org.springframework.beans.BeanMetadataAttributeAccessor;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -37,6 +29,10 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
+
+import java.lang.reflect.Constructor;
+import java.util.*;
+import java.util.function.Supplier;
 
 /**
  * Base class for concrete, full-fledged {@link BeanDefinition} classes,
@@ -55,6 +51,12 @@ import org.springframework.util.StringUtils;
  * @see RootBeanDefinition
  * @see ChildBeanDefinition
  */
+// 一种抽象的 Bean 定义，提供了Bean定义的基本属性，如bean的类名、作用域、依赖项等
+// 一种类型的 Bean 对应一个 BeanDefinition 吗？
+// 谁是 BeanDefinition 的容器呢？为什么要有 BeanDefinition 呢？
+// 按照我的理解，只要有 class 就能获取到 Bean 的实例，那为什么要有 Bean 的抽象呢？是为了方便创建吗？
+//	就像 Object 和 class 的关系吗？如果是这样，BeanDefinition 可能是为了提供给 Bean 一些特殊的功能，比如懒加载、原型。
+// 只要有 BeanDefinition，我就随时可以通过反射创建一个对应的 Bean，就像有图纸，我就能随时建造一个房子一样。
 @SuppressWarnings("serial")
 public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccessor
 		implements BeanDefinition, Cloneable {
@@ -160,6 +162,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	private boolean primary = false;
 
+	// 重命名的bean
 	private final Map<String, AutowireCandidateQualifier> qualifiers = new LinkedHashMap<>();
 
 	@Nullable
