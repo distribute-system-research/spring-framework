@@ -57,6 +57,7 @@ import java.util.function.Supplier;
 // 按照我的理解，只要有 class 就能获取到 Bean 的实例，那为什么要有 Bean 的抽象呢？是为了方便创建吗？
 //	就像 Object 和 class 的关系吗？如果是这样，BeanDefinition 可能是为了提供给 Bean 一些特殊的功能，比如懒加载、原型。
 // 只要有 BeanDefinition，我就随时可以通过反射创建一个对应的 Bean，就像有图纸，我就能随时建造一个房子一样。
+	// 这种理解不太对
 @SuppressWarnings("serial")
 public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccessor
 		implements BeanDefinition, Cloneable {

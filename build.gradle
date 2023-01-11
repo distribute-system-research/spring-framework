@@ -108,6 +108,7 @@ configure([rootProject] + javaProjects) { project ->
 		testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j-impl")
 		// JSR-305 only used for non-required meta-annotations
 		compileOnly("com.google.code.findbugs:jsr305")
+		compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
 		testCompileOnly("com.google.code.findbugs:jsr305")
 		checkstyle("io.spring.javaformat:spring-javaformat-checkstyle:0.0.31")
 	}
@@ -174,4 +175,12 @@ configure(rootProject) {
 		maxHeapSize = "1g"
 	}
 
+}
+
+dependencies {
+	implementation 'org.projectlombok:lombok:1.18.24'
+}
+
+repositories {
+	mavenCentral()
 }
