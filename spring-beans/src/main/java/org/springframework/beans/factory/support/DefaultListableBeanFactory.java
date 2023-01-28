@@ -75,6 +75,9 @@ import java.util.stream.Stream;
  * @see #resolveDependency
  */
 @SuppressWarnings("serial")
+/**
+ * 默认的 BeanFactory 实现，属于比较重要的那个。很多的底层都是用的这个。
+ */
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory
 		implements ConfigurableListableBeanFactory, BeanDefinitionRegistry, Serializable {
 
