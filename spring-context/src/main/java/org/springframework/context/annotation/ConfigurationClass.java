@@ -16,12 +16,6 @@
 
 package org.springframework.context.annotation;
 
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-
 import org.springframework.beans.factory.parsing.Location;
 import org.springframework.beans.factory.parsing.Problem;
 import org.springframework.beans.factory.parsing.ProblemReporter;
@@ -35,6 +29,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
+import java.util.*;
+
 /**
  * Represents a user-defined {@link Configuration @Configuration} class.
  * <p>Includes a set of {@link Bean} methods, including all such methods
@@ -47,6 +43,7 @@ import org.springframework.util.ClassUtils;
  * @see BeanMethod
  * @see ConfigurationClassParser
  */
+// 对 Configuration 包装的类的描述，类似于 BeanDefinition。
 final class ConfigurationClass {
 
 	private final AnnotationMetadata metadata;

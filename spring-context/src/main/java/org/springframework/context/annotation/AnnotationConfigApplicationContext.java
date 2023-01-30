@@ -16,9 +16,6 @@
 
 package org.springframework.context.annotation;
 
-import java.util.Arrays;
-import java.util.function.Supplier;
-
 import org.springframework.beans.factory.config.BeanDefinitionCustomizer;
 import org.springframework.beans.factory.support.BeanNameGenerator;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -27,6 +24,9 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.metrics.StartupStep;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
+
+import java.util.Arrays;
+import java.util.function.Supplier;
 
 /**
  * Standalone application context, accepting <em>component classes</em> as input &mdash;
@@ -65,9 +65,12 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * through {@link #register} calls and then manually {@linkplain #refresh refreshed}.
 	 */
 	public AnnotationConfigApplicationContext() {
+		// AnnotatedBeanDefinitionReader
 		StartupStep createAnnotatedBeanDefReader = this.getApplicationStartup().start("spring.context.annotated-bean-reader.create");
+		// 读取 BeanDefinition，注册 PostProcessor
 		this.reader = new AnnotatedBeanDefinitionReader(this);
 		createAnnotatedBeanDefReader.end();
+		// 扫描 BeanDefinition
 		this.scanner = new ClassPathBeanDefinitionScanner(this);
 	}
 
@@ -87,8 +90,11 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * @param componentClasses one or more component classes &mdash; for example,
 	 * {@link Configuration @Configuration} classes
 	 */
+	// 通过类创建 ApplicationContext
+	// 如果类里面有依赖关系，那么依赖关系不会自动装配？？？
 	public AnnotationConfigApplicationContext(Class<?>... componentClasses) {
 		this();
+		// 将这个 Bean 注册到容器中
 		register(componentClasses);
 		refresh();
 	}
@@ -99,6 +105,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * and automatically refreshing the context.
 	 * @param basePackages the packages to scan for component classes
 	 */
+	// 通过包名，扫描包里面所有的 Bean。创建 ApplicationContext
 	public AnnotationConfigApplicationContext(String... basePackages) {
 		this();
 		scan(basePackages);
