@@ -1,20 +1,13 @@
 package com.wentong.test.beans;
 
-import com.wentong.test.beans.bean.Person;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.wentong.test.beans.filter.CustomTypeFilter;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 
-@Component
+@Configuration
+@ComponentScan(value = "com.wentong.test.beans", includeFilters = {@ComponentScan.Filter(type = FilterType.CUSTOM, value = {CustomTypeFilter.class})}, useDefaultFilters = false)
+
 public class MainConfig {
 
-	@Autowired
-	private Person person;
-
-
-	@Override
-	public String toString() {
-		return "MainConfig{" +
-				"person=" + person +
-				'}';
-	}
 }

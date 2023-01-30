@@ -1,7 +1,9 @@
 package com.wentong.test.beans;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class MainStarter {
 
 	public static void main(String[] args) {
@@ -9,7 +11,9 @@ public class MainStarter {
 //		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Person.class);
 //		System.out.println(context.getBean(Person.class));
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("com.wentong.test.beans");
+//		context.scan("com.wentong.test.beans");
 		System.out.println(context.getBean("mainConfig"));
+		System.out.println(context.containsBean("normalBean"));
 	}
 
 }
