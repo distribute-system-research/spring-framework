@@ -45,6 +45,7 @@ import org.springframework.core.AliasRegistry;
  * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
  * @see PropertiesBeanDefinitionReader
  */
+// 这个是 BeanDefinition 的 map 存储。
 public interface BeanDefinitionRegistry extends AliasRegistry {
 
 	/**

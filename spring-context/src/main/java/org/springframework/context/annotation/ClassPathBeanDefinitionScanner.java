@@ -244,9 +244,11 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 * @param basePackages the packages to check for annotated classes
 	 * @return number of beans registered
 	 */
+	// read 扫描指定包下的满足要求的类，注册到容器中
 	public int scan(String... basePackages) {
 		int beanCountAtScanStart = this.registry.getBeanDefinitionCount();
 
+		// 将扫描到的 Component 注册到 BeanDefinitionRegistry 中，
 		doScan(basePackages);
 
 		// Register annotation config processors, if necessary.
