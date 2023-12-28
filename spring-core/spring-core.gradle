@@ -109,6 +109,7 @@ jar {
 	from(zipTree(objenesisRepackJar.archivePath)) {
 		include "org/springframework/objenesis/**"
 	}
+	duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
 }
 
 test {
@@ -128,6 +129,7 @@ sourcesJar {
 	dependsOn objenesisSourceJar
 	from javapoetSource
 	from objenesisSource
+	duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
 }
 
 eclipse {

@@ -15,3 +15,11 @@ dependencies {
 	testFixturesApi("org.junit.jupiter:junit-jupiter-api")
 	testFixturesImplementation("org.assertj:assertj-core")
 }
+
+jar {
+	duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+}
+
+sourcesJar {
+	duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+}

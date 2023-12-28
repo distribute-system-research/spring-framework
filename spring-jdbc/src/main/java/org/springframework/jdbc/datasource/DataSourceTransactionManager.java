@@ -254,6 +254,9 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 		return (txObject.hasConnectionHolder() && txObject.getConnectionHolder().isTransactionActive());
 	}
 
+	// 开始一个事务，按照事务描述的那样。绑定到当前的线程上。
+	// why: 为什么没有调用 begin 方法？
+	// answer: 在 jdbc 规范中，事务开始执行的时候，不需要手动调用 begin 方法。
 	@Override
 	protected void doBegin(Object transaction, TransactionDefinition definition) {
 		DataSourceTransactionObject txObject = (DataSourceTransactionObject) transaction;
@@ -296,6 +299,7 @@ public class DataSourceTransactionManager extends AbstractPlatformTransactionMan
 			}
 
 			// Bind the connection holder to the thread.
+			// 将 Connection 绑定到 ThreadLocal 上。跟当前的线程绑定。
 			if (txObject.isNewConnectionHolder()) {
 				TransactionSynchronizationManager.bindResource(obtainDataSource(), txObject.getConnectionHolder());
 			}
