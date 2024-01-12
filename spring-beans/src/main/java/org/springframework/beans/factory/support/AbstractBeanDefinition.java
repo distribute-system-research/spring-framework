@@ -58,6 +58,7 @@ import java.util.function.Supplier;
 //	就像 Object 和 class 的关系吗？如果是这样，BeanDefinition 可能是为了提供给 Bean 一些特殊的功能，比如懒加载、原型。
 // 只要有 BeanDefinition，我就随时可以通过反射创建一个对应的 Bean，就像有图纸，我就能随时建造一个房子一样。
 	// 这种理解不太对
+	// 不光是一个模子，更像是一个菜谱。因为它还具有一些运行时的数据，比如依赖对象的实例。ValueHolder.
 	// 对的吧！
 @SuppressWarnings("serial")
 public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccessor
