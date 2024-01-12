@@ -78,6 +78,7 @@ import java.util.stream.Stream;
 /**
  * 默认的 BeanFactory 实现，属于比较重要的那个。很多的底层都是用的这个。
  */
+// 既实现了 BeanFactory，也实现了 BeanDefinitionRegistry。
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory
 		implements ConfigurableListableBeanFactory, BeanDefinitionRegistry, Serializable {
 
@@ -899,6 +900,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		return (this.configurationFrozen || super.isBeanEligibleForMetadataCaching(beanName));
 	}
 
+	// 提前初始化所有 Singletons 对象。
 	@Override
 	public void preInstantiateSingletons() throws BeansException {
 		if (logger.isTraceEnabled()) {
@@ -942,6 +944,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	// Implementation of BeanDefinitionRegistry interface
 	//---------------------------------------------------------------------
 
+	// 将 BeanDefinition 放到容器里面。
+	// beanName -> BeanDefinition 映射关系
 	@Override
 	public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition)
 			throws BeanDefinitionStoreException {
