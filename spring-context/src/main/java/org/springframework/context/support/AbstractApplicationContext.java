@@ -525,7 +525,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
-			// 填充 BeanFactory 属性
+			// 填充 BeanFactory 属性，提前初始化一些东西
 			prepareBeanFactory(beanFactory);
 
 			try {
@@ -555,6 +555,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				registerListeners();
 
 				// Instantiate all remaining (non-lazy-init) singletons.
+				// 初始化所有 bean 的过程
 				finishBeanFactoryInitialization(beanFactory);
 
 				// Last step: publish corresponding event.

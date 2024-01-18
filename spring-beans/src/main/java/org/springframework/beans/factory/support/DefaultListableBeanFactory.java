@@ -901,6 +901,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	// 提前初始化所有 Singletons 对象。
+	// 在 getBean 的调用过程中，如果没有找到对象，就会创建对象
 	@Override
 	public void preInstantiateSingletons() throws BeansException {
 		if (logger.isTraceEnabled()) {
@@ -929,6 +930,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 		// Trigger post-initialization callback for all applicable beans...
 		for (String beanName : beanNames) {
+			// 允许提前创建的对象
 			Object singletonInstance = getSingleton(beanName);
 			if (singletonInstance instanceof SmartInitializingSingleton smartSingleton) {
 				StartupStep smartInitialize = this.getApplicationStartup().start("spring.beans.smart-initialize")
