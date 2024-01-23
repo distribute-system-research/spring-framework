@@ -1123,6 +1123,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		if (mbd.getFactoryMethodName() != null) {
+			// 使用工厂方法
 			return instantiateUsingFactoryMethod(beanName, mbd, args);
 		}
 
